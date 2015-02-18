@@ -11,7 +11,7 @@ vg.svg.Renderer = (function() {
   
   var prototype = renderer.prototype;
   
-  prototype.initialize = function(el, width, height, pad, background) {
+  prototype.initialize = function(el, width, height, pad, background, border, borderWidth) {
     this._el = el;
 
     // remove any existing svg element
@@ -24,7 +24,16 @@ vg.svg.Renderer = (function() {
 
     // Set background if necessary
     if (background) {
-      this._svg.attr("style", "background: " + background);
+      this._svg.style("background", background);
+    }
+    // Set border colour if necessary
+    if (border) {
+      this._svg.style("border-style", 'solid');
+      this._svg.style("border-color", border);
+    }
+    // Set border colour if necessary
+    if (borderWidth) {
+      this._svg.style("border-width", borderWidth);
     }
 
     // set the svg root group

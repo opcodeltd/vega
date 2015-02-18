@@ -50,7 +50,33 @@ vg.View = (function() {
     }
     return this;
   };
-
+  
+  prototype.border = function (border) {
+    if (!arguments.length) {
+      return this.__border;
+    }
+    if (this.__border !== border) {
+      this._border = this.__border = border;
+      if (this._el) {
+        this.initialize(this._el.parentNode);
+      }
+    }
+    return this;
+  };
+  
+  prototype.borderWidth = function (borderWidth) {
+    if (!arguments.length) {
+      return this.__borderWidth;
+    }
+    if (this.__borderWidth !== borderWidth) {
+      this._borderWidth = this.__borderWidth = borderWidth;
+      if (this._el) {
+        this.initialize(this._el.parentNode);
+      }
+    }
+    return this;
+  };
+  
   prototype.padding = function(pad) {
     if (!arguments.length) return this._padding;
     if (this._padding !== pad) {
@@ -148,7 +174,8 @@ vg.View = (function() {
 
   prototype.initialize = function(el) {
     var v = this, prevHandler,
-        w = v._width, h = v._height, pad = v._padding, background = v._background;
+        w = v._width, h = v._height, pad = v._padding, background = v._background, border = v._border,
+        borderWidth = v._borderWidth;
     
     // clear pre-existing container
     d3.select(el).select("div.vega").remove();
@@ -168,7 +195,7 @@ vg.View = (function() {
     
     // renderer
     v._renderer = (v._renderer || new this._io.Renderer())
-      .initialize(el, w, h, pad, background);
+      .initialize(el, w, h, pad, background, border, borderWidth);
     
     // input handler
     prevHandler = v._handler;
@@ -233,6 +260,8 @@ vg.ViewFactory = function(defs) {
       .width(defs.width)
       .height(defs.height)
       .background(defs.background)
+      .border(defs.border)
+      .borderWidth(defs.borderWidth)
       .padding(defs.padding)
       .viewport(defs.viewport)
       .renderer(opt.renderer || "canvas")

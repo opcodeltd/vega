@@ -9,13 +9,17 @@ vg.parse.spec = function(spec, callback, viewFactory) {
     var width = spec.width || 500,
         height = spec.height || 500,
         viewport = spec.viewport || null,
-        background = spec.background || null;
-    
+        background = spec.background || null,
+        border = spec.border || null,
+        borderWidth = spec.borderWidth || null;
+
     var defs = {
       width: width,
       height: height,
       viewport: viewport,
       background: background,
+      border: border,
+      borderWidth: borderWidth,
       padding: vg.parse.padding(spec.padding),
       marks: vg.parse.marks(spec, width, height),
       data: vg.parse.data(spec.data, function() { callback(viewConstructor); })
