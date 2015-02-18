@@ -38,6 +38,19 @@ vg.View = (function() {
     return this;
   };
 
+  prototype.background = function (background) {
+    if (!arguments.length) {
+      return this.__background;
+    }
+    if (this.__background !== background) {
+      this._background = this.__background = background;
+      if (this._el) {
+        this.initialize(this._el.parentNode);
+      }
+    }
+    return this;
+  };
+
   prototype.padding = function(pad) {
     if (!arguments.length) return this._padding;
     if (this._padding !== pad) {
@@ -135,7 +148,7 @@ vg.View = (function() {
 
   prototype.initialize = function(el) {
     var v = this, prevHandler,
-        w = v._width, h = v._height, pad = v._padding;
+        w = v._width, h = v._height, pad = v._padding, background = v._background;
     
     // clear pre-existing container
     d3.select(el).select("div.vega").remove();
@@ -155,7 +168,7 @@ vg.View = (function() {
     
     // renderer
     v._renderer = (v._renderer || new this._io.Renderer())
-      .initialize(el, w, h, pad);
+      .initialize(el, w, h, pad, background);
     
     // input handler
     prevHandler = v._handler;
@@ -219,6 +232,7 @@ vg.ViewFactory = function(defs) {
     var v = new vg.View()
       .width(defs.width)
       .height(defs.height)
+      .background(defs.background)
       .padding(defs.padding)
       .viewport(defs.viewport)
       .renderer(opt.renderer || "canvas")
