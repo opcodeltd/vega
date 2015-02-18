@@ -5,11 +5,10 @@
     <script src="../lib/d3.v3.min.js"></script>
     <script src="../../vega.js"></script>
     <style>
-* { font-family: Helvetica Neue, Helvetica, Arial, sans-serif; }
-.view { display: block; }
-input[type="range"] { width: 280px; }
-.ctrl { display: inline-block; width: 90px; font-weight: bold; }
-.flash { display: none; font-style: italic; }
+        body {
+            font-family: sans-serif;
+            background-color: #555;
+        }
     </style>
   </head>
   <body>
@@ -24,7 +23,7 @@ var spec = {
     "height": 445,
     "border": "#333",
     "borderWidth": 2,
-    "background": "#f00",
+    "background": "#fff",
     "data": [
         {
             "name": "series1",
