@@ -2532,7 +2532,7 @@ var vg_gradient_id = 0;vg.canvas = {};vg.canvas.path = (function() {
   
   var prototype = renderer.prototype;
   
-  prototype.initialize = function(el, width, height, pad) {
+  prototype.initialize = function(el, width, height, pad, background, border, borderWidth) {
     this._el = el;
 
     // remove any existing svg element
@@ -2542,7 +2542,21 @@ var vg_gradient_id = 0;vg.canvas = {};vg.canvas.path = (function() {
     this._svg = d3.select(el)
       .append("svg")
       .attr("class", "marks");
-    
+
+    // Set background if necessary
+    if (background) {
+      this._svg.style("background", background);
+    }
+    // Set border colour if necessary
+    if (border) {
+      this._svg.style("border-style", 'solid');
+      this._svg.style("border-color", border);
+    }
+    // Set border colour if necessary
+    if (borderWidth) {
+      this._svg.style("border-width", borderWidth);
+    }
+
     // set the svg root group
     this._ctx = this._svg.append("g");
     
@@ -2641,7 +2655,7 @@ var vg_gradient_id = 0;vg.canvas = {};vg.canvas.path = (function() {
       marks.update[type].call(node, item);
       marks.style.call(node, item);
     }
-  }
+  };
   
   prototype.draw = function(ctx, scene, index) {
     var marktype = scene.marktype,
@@ -2650,7 +2664,8 @@ var vg_gradient_id = 0;vg.canvas = {};vg.canvas.path = (function() {
   };
   
   return renderer;
-})();vg.svg.Handler = (function() {
+})();
+vg.svg.Handler = (function() {
   var handler = function(el, model) {
     this._active = null;
     this._handlers = {};
@@ -5072,12 +5087,18 @@ vg.parse.spec = function(spec, callback, viewFactory) {
     
     var width = spec.width || 500,
         height = spec.height || 500,
-        viewport = spec.viewport || null;
-    
+        viewport = spec.viewport || null,
+        background = spec.background || null,
+        border = spec.border || null,
+        borderWidth = spec.borderWidth || null;
+
     var defs = {
       width: width,
       height: height,
       viewport: viewport,
+      background: background,
+      border: border,
+      borderWidth: borderWidth,
       padding: vg.parse.padding(spec.padding),
       marks: vg.parse.marks(spec, width, height),
       data: vg.parse.data(spec.data, function() { callback(viewConstructor); })
@@ -5090,7 +5111,8 @@ vg.parse.spec = function(spec, callback, viewFactory) {
     d3.json(spec, function(error, json) {
       error ? vg.error(error) : parse(json);
     });
-};vg.parse.transform = function(def) {
+};
+vg.parse.transform = function(def) {
   var tx = vg.data[def.type]();
       
   vg.keys(def).forEach(function(k) {
@@ -6992,6 +7014,45 @@ function vg_hLegendLabels() {
     return this;
   };
 
+  prototype.background = function (background) {
+    if (!arguments.length) {
+      return this.__background;
+    }
+    if (this.__background !== background) {
+      this._background = this.__background = background;
+      if (this._el) {
+        this.initialize(this._el.parentNode);
+      }
+    }
+    return this;
+  };
+  
+  prototype.border = function (border) {
+    if (!arguments.length) {
+      return this.__border;
+    }
+    if (this.__border !== border) {
+      this._border = this.__border = border;
+      if (this._el) {
+        this.initialize(this._el.parentNode);
+      }
+    }
+    return this;
+  };
+  
+  prototype.borderWidth = function (borderWidth) {
+    if (!arguments.length) {
+      return this.__borderWidth;
+    }
+    if (this.__borderWidth !== borderWidth) {
+      this._borderWidth = this.__borderWidth = borderWidth;
+      if (this._el) {
+        this.initialize(this._el.parentNode);
+      }
+    }
+    return this;
+  };
+  
   prototype.padding = function(pad) {
     if (!arguments.length) return this._padding;
     if (this._padding !== pad) {
@@ -7089,7 +7150,8 @@ function vg_hLegendLabels() {
 
   prototype.initialize = function(el) {
     var v = this, prevHandler,
-        w = v._width, h = v._height, pad = v._padding;
+        w = v._width, h = v._height, pad = v._padding, background = v._background, border = v._border,
+        borderWidth = v._borderWidth;
     
     // clear pre-existing container
     d3.select(el).select("div.vega").remove();
@@ -7109,7 +7171,7 @@ function vg_hLegendLabels() {
     
     // renderer
     v._renderer = (v._renderer || new this._io.Renderer())
-      .initialize(el, w, h, pad);
+      .initialize(el, w, h, pad, background, border, borderWidth);
     
     // input handler
     prevHandler = v._handler;
@@ -7173,6 +7235,9 @@ vg.ViewFactory = function(defs) {
     var v = new vg.View()
       .width(defs.width)
       .height(defs.height)
+      .background(defs.background)
+      .border(defs.border)
+      .borderWidth(defs.borderWidth)
       .padding(defs.padding)
       .viewport(defs.viewport)
       .renderer(opt.renderer || "canvas")
