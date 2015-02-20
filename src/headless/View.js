@@ -12,6 +12,7 @@ vg.headless.View = (function() {
     this._autopad = vg.isString(this._padding) ? 1 : 0;
     this._renderer = new vg[type].Renderer();
     this._viewport = vp || null;
+    this._strict = vg.isString(pad) && pad === 'strict';
     this.initialize();
   };
   
@@ -32,6 +33,7 @@ vg.headless.View = (function() {
       this._width = width;
       this.initialize();
       this._model.width(width);
+      if (this._strict) this._autopad = 1;
     }
     return this;
   };
@@ -42,6 +44,7 @@ vg.headless.View = (function() {
       this._height = height;
       this.initialize();
       this._model.height(this._height);
+      if (this._strict) this._autopad = 1;
     }
     return this;
   };
@@ -114,7 +117,6 @@ vg.headless.View = (function() {
         r = b.x2 > this._width  ? Math.ceil(+b.x2 - this._width) + inset : 0,
         b = b.y2 > this._height ? Math.ceil(+b.y2 - this._height) + inset : 0;
     pad = {left:l, top:t, right:r, bottom:b};
-
     if (this._strict) {
       this._autopad = 0;
       this._padding = pad;
@@ -274,7 +276,10 @@ vg.headless.View.Factory = function(defs) {
         v = new vg.headless.View(w, h, p, r, vp).defs(defs);
     v.background(defs.background)
       .border(defs.border)
-      .borderWidth(defs.borderWidth);
+      .borderWidth(defs.borderWidth)
+      .padding(defs.padding)
+      .width(defs.width)
+      .height(defs.height);
     if (defs.data.load) v.data(defs.data.load);
     if (opt.data) v.data(opt.data);
     return v;
