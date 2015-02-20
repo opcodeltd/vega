@@ -2868,7 +2868,7 @@ vg.data.loader = function(uri, callback) {
     vg_load_xhr(url, callback);
   }  
 };
-vg.data.loader = vg.data.load;
+vg.data.load = vg.data.loader;
 
 var vg_load_protocolRE = /^[A-Za-z]+\:\/\//;
 var vg_load_fileProtocol = "file://";
