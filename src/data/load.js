@@ -1,4 +1,6 @@
-vg.data.load = function(uri, callback) {
+
+// For no obvious reason .load gets overwritten with something in node.
+vg.data.loader = function(uri, callback) {
   var url = vg_load_hasProtocol(uri) ? uri : vg.config.baseURL + uri;
   if (vg.config.isNode) {
     // in node.js, consult url and select file or http
@@ -9,6 +11,7 @@ vg.data.load = function(uri, callback) {
     vg_load_xhr(url, callback);
   }  
 };
+vg.data.loader = vg.data.load;
 
 var vg_load_protocolRE = /^[A-Za-z]+\:\/\//;
 var vg_load_fileProtocol = "file://";

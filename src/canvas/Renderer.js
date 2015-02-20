@@ -191,7 +191,7 @@ vg.canvas.Renderer = (function() {
     renderer._imgload += 1;
     if (vg.config.isNode) {
       image = new (require("canvas").Image)();
-      vg.data.load(uri, function(err, data) {
+      vg.data.loader(uri, function(err, data) {
         if (err) { vg.error(err); return; }
         image.src = data;
         image.loaded = true;
