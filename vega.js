@@ -2042,7 +2042,7 @@ var vg_gradient_id = 0;vg.canvas = {};vg.canvas.path = (function() {
     renderer._imgload += 1;
     if (vg.config.isNode) {
       image = new (require("canvas").Image)();
-      vg.data.load(uri, function(err, data) {
+      vg.data.loader(uri, function(err, data) {
         if (err) { vg.error(err); return; }
         image.src = data;
         image.loaded = true;
@@ -2064,7 +2064,8 @@ var vg_gradient_id = 0;vg.canvas = {};vg.canvas.path = (function() {
   };
 
   return renderer;
-})();vg.canvas.Handler = (function() {
+})();
+vg.canvas.Handler = (function() {
   var handler = function(el, model) {
     this._active = null;
     this._handlers = {};
@@ -2386,7 +2387,7 @@ var vg_gradient_id = 0;vg.canvas = {};vg.canvas.path = (function() {
     if (o.position === "absolute-x") {
       x += o.mark.group.bounds.x1 - vg.config.autopadInset;
     }
-    
+
     if (r) {
       var t = (o.theta || 0) - Math.PI/2;
       x += r * Math.cos(t);
@@ -2854,7 +2855,9 @@ vg.data.size = function(size, group) {
     return (typeof d === 'string') ? group[d] : d;
   });
   return size;
-};vg.data.load = function(uri, callback) {
+};
+// For no obvious reason .load gets overwritten with something in node.
+vg.data.loader = function(uri, callback) {
   var url = vg_load_hasProtocol(uri) ? uri : vg.config.baseURL + uri;
   if (vg.config.isNode) {
     // in node.js, consult url and select file or http
@@ -2865,6 +2868,7 @@ vg.data.size = function(size, group) {
     vg_load_xhr(url, callback);
   }  
 };
+vg.data.loader = vg.data.load;
 
 var vg_load_protocolRE = /^[A-Za-z]+\:\/\//;
 var vg_load_fileProtocol = "file://";
@@ -2926,7 +2930,8 @@ function vg_load_http(url, callback) {
 	});
 	req.on("error", function(err) { callback(err); });
 	req.end();
-}vg.data.read = (function() {
+}
+vg.data.read = (function() {
   var formats = {},
       parsers = {
         "number": vg.number,
