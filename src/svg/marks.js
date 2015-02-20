@@ -151,10 +151,15 @@ vg.svg.marks = (function() {
         base = o.baseline==="top" ? ".9em"
              : o.baseline==="middle" ? ".35em" : 0;
 
+
     if (r) {
       var t = (o.theta || 0) - Math.PI/2;
       x += r * Math.cos(t);
       y += r * Math.sin(t);
+    }
+
+    if (x === 'group-left') {
+      o.x = o.mark.group.bounds.x1;
     }
 
     this.setAttribute("x", x + dx);
