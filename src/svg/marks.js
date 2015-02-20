@@ -32,7 +32,7 @@ vg.svg.marks = (function() {
     "strokeCap":        "stroke-linecap",
     "strokeDash":       "stroke-dasharray",
     "strokeDashOffset": "stroke-dashoffset",
-    "opacity":          "opacity"
+    "opacity":          "opacity",
   };
   var styleProps = vg.keys(styles);
 
@@ -166,9 +166,15 @@ vg.svg.marks = (function() {
     
     if (base) this.setAttribute("dy", base);
     else this.removeAttribute("dy");
-    
+
+
+    this.style.setProperty("font-family", o.font, null);
+    this.style.setProperty("font-style", o.fontStyle, null);
+    this.style.setProperty("font-variant", o.fontVariant, null);
+    this.style.setProperty("font-Weight", o.fontWeight, null);
+    this.style.setProperty("font-size", (o.fontSize != null ? o.fontSize : vg.config.render.fontSize) + "px", null);
+    //this.style.setProperty("font-family", "Raleway", null);
     this.textContent = o.text;
-    this.style.setProperty("font", fontString(o), null);
   }
   
   function group(o) {

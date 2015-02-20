@@ -1,0 +1,871 @@
+{
+  "width": 700,
+  "height": 525,
+  "border": "#f00",
+  "borderWidth": 1,
+  "background": "#fff",
+  "data": [
+    {
+      "name": "series1",
+      "values": [
+        {
+          "value": 4.03682719547,
+          "Year": "1974",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 4.0017211704,
+          "Year": "1974",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 5.58073654391,
+          "Year": "1975",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 6.07429718876,
+          "Year": "1975",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 7.64872521246,
+          "Year": "1976",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 7.48709122203,
+          "Year": "1976",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 8.20113314448,
+          "Year": "1977",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 8.04647160069,
+          "Year": "1977",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 8.71813031161,
+          "Year": "1978",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 8.66322432587,
+          "Year": "1978",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 10.276203966,
+          "Year": "1979",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 10.4991394148,
+          "Year": "1979",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 14.4688385269,
+          "Year": "1980",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 14.2833237713,
+          "Year": "1980",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 16.5934844193,
+          "Year": "1981",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 16.303308472,
+          "Year": "1981",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 19.0014164306,
+          "Year": "1982",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 18.4547714668,
+          "Year": "1982",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 20.1133144476,
+          "Year": "1983",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 19.5065978199,
+          "Year": "1983",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 22.1813031161,
+          "Year": "1984",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 21.5982979537,
+          "Year": "1984",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 26.3243626062,
+          "Year": "1985",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 26.0087970931,
+          "Year": "1985",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 23.7535410765,
+          "Year": "1986",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 22.9943583859,
+          "Year": "1986",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 25.786898017,
+          "Year": "1987",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 25.2438324727,
+          "Year": "1987",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 25.4745042493,
+          "Year": "1988",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 25.1219162364,
+          "Year": "1988",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 25.8367563739,
+          "Year": "1989",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 25.3585771658,
+          "Year": "1989",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 27.2734582807,
+          "Year": "1990",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 27.4908677927,
+          "Year": "1990",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 28.2705934115,
+          "Year": "1991",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 27.144633185,
+          "Year": "1991",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 28.5006425233,
+          "Year": "1992",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 27.7261376193,
+          "Year": "1992",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 28.2945297103,
+          "Year": "1993",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 27.3217363766,
+          "Year": "1993",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 26.8988353085,
+          "Year": "1994",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 25.8209758558,
+          "Year": "1994",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 26.9158613847,
+          "Year": "1995",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 25.8065398699,
+          "Year": "1995",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 27.0329936733,
+          "Year": "1996",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 25.9400048398,
+          "Year": "1996",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 27.0846692119,
+          "Year": "1997",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 25.9851991132,
+          "Year": "1997",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 25.4537377885,
+          "Year": "1998",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 24.3396890321,
+          "Year": "1998",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 25.5355868458,
+          "Year": "1999",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 24.4869098767,
+          "Year": "1999",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 31.4986293299,
+          "Year": "2000",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 30.7269654642,
+          "Year": "2000",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 31.0013187101,
+          "Year": "2001",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 29.9829929955,
+          "Year": "2001",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 30.576088345,
+          "Year": "2002",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 29.5032642204,
+          "Year": "2002",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 31.2951070249,
+          "Year": "2003",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 30.1314127819,
+          "Year": "2003",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 34.5778988073,
+          "Year": "2004",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 33.4019311542,
+          "Year": "2004",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 38.9453481707,
+          "Year": "2005",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 37.8713408902,
+          "Year": "2005",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 45.5727040971,
+          "Year": "2006",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 44.449947504,
+          "Year": "2006",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 45.4242622104,
+          "Year": "2007",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 44.3126507662,
+          "Year": "2007",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 52.8439088154,
+          "Year": "2008",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 51.8616430669,
+          "Year": "2008",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 47.56291046,
+          "Year": "2009",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 45.9828065169,
+          "Year": "2009",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 52.5231015409,
+          "Year": "2010",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 50.7132555856,
+          "Year": "2010",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 60.9988825848,
+          "Year": "2011",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 59.0373263085,
+          "Year": "2011",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 62.396040356,
+          "Year": "2012",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 60.0629456198,
+          "Year": "2012",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 62.7994094721,
+          "Year": "2013",
+          "Fuel type": "Premium Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        },
+        {
+          "value": 60.3309075164,
+          "Year": "2013",
+          "Fuel type": "Regular Petrol",
+          "Fuel category": "Petrol1",
+          "Units": "NZ$/GJ",
+          "GST": "Y"
+        }
+      ]
+    }
+  ],
+  "padding": "strict",
+  "scales": [
+    {
+      "name": "group",
+      "type": "ordinal",
+      "range": "category20",
+      "domain": {
+        "data": "series1",
+        "field": "data.Fuel type"
+      }
+    }
+  ],
+  "axes": [],
+  "marks": [
+    {
+      "type": "group",
+      "properties": {
+        "enter": {
+          "x": {"value": 0},
+          "y": {
+            "value": 0,
+            "offset": 80
+          },
+          "width": {"group": "width"},
+          "height": {
+            "group": "height",
+            "offset": -80
+          }
+        }
+      },
+      "scales": [
+        {
+          "name": "x",
+          "type": "ordinal",
+          "range": "width",
+          "padding": 0.2,
+          "domain": {
+            "data": "series1",
+            "field": "data.Year"
+          },
+          "points": true
+        },
+        {
+          "name": "y",
+          "type": "linear",
+          "range": "height",
+          "nice": true,
+          "domain": {
+            "data": "series1",
+            "field": "data.value"
+          }
+        }
+      ],
+      "axes": [
+        {
+          "type": "x",
+          "scale": "x",
+          "tickSizeMajor": 8,
+          "tickSizeEnd": 0,
+          "tickPadding": 4,
+          "ticks": 5,
+          "properties": {
+            "majorTicks": {
+              "stroke": {"value": "#934f87"},
+              "strokeWidth": {"value": 1}
+            },
+            "title": {
+              "fontWeight": {"value": "300"},
+              "fontSize": {"value": 16},
+              "font": {"value": "'Raleway','Helvetica Neue',Helvetica,Arial,sans-serif"},
+              "fill": {"value": "#ccc"}
+            },
+            "labels": {
+              "fontSize": {"value": 14},
+              "font": {"value": "'Raleway','Helvetica Neue',Helvetica,Arial,sans-serif"},
+              "fill": {"value": "#555"}
+            },
+            "axis": {"stroke": {"value": "#934f87"}}
+          },
+          "values": [
+            "1974",
+            "1979",
+            "1984",
+            "1989",
+            "1994",
+            "1999",
+            "2004",
+            "2009"
+          ]
+        },
+        {
+          "type": "y",
+          "scale": "y",
+          "tickPadding": 10,
+          "ticks": 6,
+          "properties": {
+            "axis": {"stroke": {"value": "transparent"}},
+            "labels": {
+              "fontSize": {"value": 14},
+              "font": {"value": "'Raleway','Helvetica Neue',Helvetica,Arial,sans-serif"},
+              "fill": {"value": "#555"}
+            },
+            "title": {
+              "fontWeight": {"value": "300"},
+              "fontSize": {"value": 16},
+              "font": {"value": "'Raleway','Helvetica Neue',Helvetica,Arial,sans-serif"},
+              "fill": {"value": "#ccc"}
+            }
+          },
+          "tickSize": 0,
+          "layer": "back",
+          "grid": true
+        }
+      ],
+      "marks": [
+        {
+          "type": "text",
+          "properties": {
+            "enter": {
+              "text": {"value": "New Zealand petrol prices"},
+              "x": {"value": 0},
+              "y": {"value": -70},
+              "fontSize": {"value": 18},
+              "fontWeight": {"value": 700},
+              "font": {"value": "'Raleway'"},
+              "align": {"value": "left"},
+              "baseline": {"value": "bottom"},
+              "fill": {"value": "#555"}
+            }
+          }
+        },
+        {
+          "type": "text",
+          "properties": {
+            "enter": {
+              "text": {"value": "NZD per gigajoule, 1974–2013, GST inclusive"},
+              "x": {"value": 0},
+              "y": {"value": -50},
+              "fontSize": {"value": 16},
+              "fontWeight": {"value": 300},
+              "font": {"value": "'Raleway'"},
+              "align": {"value": "left"},
+              "baseline": {"value": "bottom"},
+              "fill": {"value": "#ccc"}
+            }
+          }
+        },
+        {
+          "type": "text",
+          "properties": {
+            "enter": {
+              "text": {"value": "Ministry of Business, Innovation, and Employment"},
+              "x": {"value": 0},
+              "y": {"value": -30},
+              "fontSize": {"value": 10},
+              "fontWeight": {"value": 300},
+              "font": {"value": "'Raleway'"},
+              "align": {"value": "left"},
+              "baseline": {"value": "bottom"},
+              "fill": {"value": "#ccc"}
+            }
+          }
+        },
+        {
+          "type": "group",
+          "from": {
+            "data": "series1",
+            "transform": [
+              {
+                "type": "facet",
+                "keys": ["data.Fuel type"]
+              }
+            ]
+          },
+          "marks": [
+            {
+              "type": "line",
+              "properties": {
+                "enter": {
+                  "x": {
+                    "scale": "x",
+                    "field": "data.Year"
+                  },
+                  "y": {
+                    "scale": "y",
+                    "field": "data.value"
+                  },
+                  "stroke": {
+                    "scale": "group",
+                    "field": "data.Fuel type"
+                  },
+                  "strokeWidth": {"value": 2}
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "group",
+      "offset": 0,
+      "properties": {
+        "legend": {
+          "x": {"value": 400},
+          "y": {"value": -10}
+        },
+        "labels": {"font": {"value": "'Raleway'"}},
+        "symbols": {
+          "stroke": {"value": "transparent"},
+          "shape": {"value": "square"}
+        }
+      }
+    }
+  ]
+}

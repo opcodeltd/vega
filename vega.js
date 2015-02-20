@@ -2251,7 +2251,7 @@ var vg_gradient_id = 0;vg.canvas = {};vg.canvas.path = (function() {
     "strokeCap":        "stroke-linecap",
     "strokeDash":       "stroke-dasharray",
     "strokeDashOffset": "stroke-dashoffset",
-    "opacity":          "opacity"
+    "opacity":          "opacity",
   };
   var styleProps = vg.keys(styles);
 
@@ -2385,9 +2385,15 @@ var vg_gradient_id = 0;vg.canvas = {};vg.canvas.path = (function() {
     
     if (base) this.setAttribute("dy", base);
     else this.removeAttribute("dy");
-    
+
+
+    this.style.setProperty("font-family", o.font, null);
+    this.style.setProperty("font-style", o.fontStyle, null);
+    this.style.setProperty("font-variant", o.fontVariant, null);
+    this.style.setProperty("font-Weight", o.fontWeight, null);
+    this.style.setProperty("font-size", (o.fontSize != null ? o.fontSize : vg.config.render.fontSize) + "px", null);
+    //this.style.setProperty("font-family", "Raleway", null);
     this.textContent = o.text;
-    this.style.setProperty("font", fontString(o), null);
   }
   
   function group(o) {
@@ -2519,10 +2525,13 @@ var vg_gradient_id = 0;vg.canvas = {};vg.canvas.path = (function() {
     }
   };
   
-})();vg.svg.Renderer = (function() {
+})();
+vg.svg.Renderer = (function() {
   var renderer = function() {
     this._svg = null;
     this._ctx = null;
+    this._style = null;
+    this._bg = null;
     this._el = null;
     this._defs = {
       gradient: {},
@@ -2541,20 +2550,63 @@ var vg_gradient_id = 0;vg.canvas = {};vg.canvas.path = (function() {
     // create svg element and initialize attributes
     this._svg = d3.select(el)
       .append("svg")
-      .attr("class", "marks");
+      .attr("class", "marks")
+      .attr("preserveAspectRatio" , "xMinYMin meet")
+      .attr("viewBox", "0 0 " + (width + pad) + " " + (height + pad));
+
+    this._style = this._svg.append("style");
+    this._style.text("<![CDATA[ \
+    /* latin */ \
+      @font-face { \
+        font-family: 'Raleway'; \
+        font-style: normal; \
+        font-weight: 300; \
+        src: local('Raleway Light'), local('Raleway-Light'), url(http://fonts.gstatic.com/s/raleway/v9/-_Ctzj9b56b8RgXW8FAriQzyDMXhdD8sAj6OAJTFsBI.woff2) format('woff2'); \
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000; \
+      } \
+      /* latin */ \
+      @font-face { \
+        font-family: 'Raleway'; \
+        font-style: normal; \
+        font-weight: 400; \
+        src: local('Raleway'), url(http://fonts.gstatic.com/s/raleway/v9/QAUlVt1jXOgQavlW5wEfxQLUuEpTyoUstqEm5AMlJo4.woff2) format('woff2'); \
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000; \
+      } \
+      /* latin */ \
+      @font-face { \
+        font-family: 'Raleway'; \
+        font-style: normal; \
+        font-weight: 700; \
+        src: local('Raleway Bold'), local('Raleway-Bold'), url(http://fonts.gstatic.com/s/raleway/v9/JbtMzqLaYbbbCL9X6EvaIwzyDMXhdD8sAj6OAJTFsBI.woff2) format('woff2'); \
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000; \
+      } \
+      /* latin */ \
+      @font-face { \
+        font-family: 'Raleway'; \
+        font-style: normal; \
+        font-weight: 800; \
+        src: local('Raleway ExtraBold'), local('Raleway-ExtraBold'), url(http://fonts.gstatic.com/s/raleway/v9/1ImRNPx4870-D9a1EBUdPAzyDMXhdD8sAj6OAJTFsBI.woff2) format('woff2'); \
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000; \
+      }]]>> \
+    ");
+
+    if (background || border) {
+      this._bg = this._svg.append("rect");
+      this._bg.attr('width', '100%');
+      this._bg.attr('height', '100%');
+    }
 
     // Set background if necessary
     if (background) {
-      this._svg.style("background", background);
+      this._bg.style("fill", background);
     }
     // Set border colour if necessary
     if (border) {
-      this._svg.style("border-style", 'solid');
-      this._svg.style("border-color", border);
+      this._bg.style("stroke", border);
     }
     // Set border colour if necessary
     if (borderWidth) {
-      this._svg.style("border-width", borderWidth);
+      this._bg.style("stroke-width", borderWidth);
     }
 
     // set the svg root group
@@ -7422,6 +7474,45 @@ vg.headless = {};vg.headless.View = (function() {
     return this;
   };
 
+  prototype.background = function (background) {
+    if (!arguments.length) {
+      return this.__background;
+    }
+    if (this.__background !== background) {
+      this._background = this.__background = background;
+      if (this._el) {
+        this.initialize(this._el.parentNode);
+      }
+    }
+    return this;
+  };
+
+  prototype.border = function (border) {
+    if (!arguments.length) {
+      return this.__border;
+    }
+    if (this.__border !== border) {
+      this._border = this.__border = border;
+      if (this._el) {
+        this.initialize(this._el.parentNode);
+      }
+    }
+    return this;
+  };
+
+  prototype.borderWidth = function (borderWidth) {
+    if (!arguments.length) {
+      return this.__borderWidth;
+    }
+    if (this.__borderWidth !== borderWidth) {
+      this._borderWidth = this.__borderWidth = borderWidth;
+      if (this._el) {
+        this.initialize(this._el.parentNode);
+      }
+    }
+    return this;
+  };
+
   prototype.autopad = function(opt) {
     if (this._autopad < 1) return this;
     else this._autopad = 0;
@@ -7517,6 +7608,7 @@ vg.headless = {};vg.headless.View = (function() {
     return '<svg '
       + 'width="' + w + '" '
       + 'height="' + h + '" '
+      + 'viewBox="0 0 ' + w + ' ' + h + '" '
       + vg.config.svgNamespace + '>' + svg + '</svg>'
   };
 
@@ -7531,7 +7623,7 @@ vg.headless = {};vg.headless.View = (function() {
     }
     
     if (this._type === "svg") {
-      this.initSVG(w, h, pad);
+      this.initSVG(w, h, pad, this._background, this._border, this._borderWidth);
     } else {
       this.initCanvas(w, h, pad);
     }
@@ -7554,13 +7646,13 @@ vg.headless = {};vg.headless.View = (function() {
     this._renderer.resize(w, h, pad);
   };
   
-  prototype.initSVG = function(w, h, pad) {
+  prototype.initSVG = function(w, h, pad, background, border, borderWidth) {
     var tw = w + pad.left + pad.right,
         th = h + pad.top + pad.bottom;
 
     // configure renderer
-    this._renderer.initialize(this._el, w, h, pad);
-  }
+    this._renderer.initialize(this._el, w, h, pad, background, border, borderWidth);
+  };
   
   prototype.render = function(items) {
     this._renderer.render(this._model.scene(), items);
@@ -7591,11 +7683,15 @@ vg.headless.View.Factory = function(defs) {
         vp = defs.viewport,
         r = opt.renderer || "canvas",
         v = new vg.headless.View(w, h, p, r, vp).defs(defs);
+    v.background(defs.background)
+      .border(defs.border)
+      .borderWidth(defs.borderWidth);
     if (defs.data.load) v.data(defs.data.load);
     if (opt.data) v.data(opt.data);
     return v;
   };
-};vg.headless.render = function(opt, callback) {
+};
+vg.headless.render = function(opt, callback) {
   function draw(chart) {
     try {
       // create and render view

@@ -2,6 +2,8 @@ vg.svg.Renderer = (function() {
   var renderer = function() {
     this._svg = null;
     this._ctx = null;
+    this._style = null;
+    this._bg = null;
     this._el = null;
     this._defs = {
       gradient: {},
@@ -22,18 +24,23 @@ vg.svg.Renderer = (function() {
       .append("svg")
       .attr("class", "marks");
 
+    if (background || border) {
+      this._bg = this._svg.append("rect");
+      this._bg.attr('width', '100%');
+      this._bg.attr('height', '100%');
+    }
+
     // Set background if necessary
     if (background) {
-      this._svg.style("background", background);
+      this._bg.style("fill", background);
     }
     // Set border colour if necessary
     if (border) {
-      this._svg.style("border-style", 'solid');
-      this._svg.style("border-color", border);
+      this._bg.style("stroke", border);
     }
     // Set border colour if necessary
     if (borderWidth) {
-      this._svg.style("border-width", borderWidth);
+      this._bg.style("stroke-width", borderWidth);
     }
 
     // set the svg root group

@@ -63,6 +63,45 @@ vg.headless.View = (function() {
     return this;
   };
 
+  prototype.background = function (background) {
+    if (!arguments.length) {
+      return this.__background;
+    }
+    if (this.__background !== background) {
+      this._background = this.__background = background;
+      if (this._el) {
+        this.initialize(this._el.parentNode);
+      }
+    }
+    return this;
+  };
+
+  prototype.border = function (border) {
+    if (!arguments.length) {
+      return this.__border;
+    }
+    if (this.__border !== border) {
+      this._border = this.__border = border;
+      if (this._el) {
+        this.initialize(this._el.parentNode);
+      }
+    }
+    return this;
+  };
+
+  prototype.borderWidth = function (borderWidth) {
+    if (!arguments.length) {
+      return this.__borderWidth;
+    }
+    if (this.__borderWidth !== borderWidth) {
+      this._borderWidth = this.__borderWidth = borderWidth;
+      if (this._el) {
+        this.initialize(this._el.parentNode);
+      }
+    }
+    return this;
+  };
+
   prototype.autopad = function(opt) {
     if (this._autopad < 1) return this;
     else this._autopad = 0;
@@ -158,6 +197,7 @@ vg.headless.View = (function() {
     return '<svg '
       + 'width="' + w + '" '
       + 'height="' + h + '" '
+      + 'viewBox="0 0 ' + w + ' ' + h + '" '
       + vg.config.svgNamespace + '>' + svg + '</svg>'
   };
 
@@ -172,7 +212,7 @@ vg.headless.View = (function() {
     }
     
     if (this._type === "svg") {
-      this.initSVG(w, h, pad);
+      this.initSVG(w, h, pad, this._background, this._border, this._borderWidth);
     } else {
       this.initCanvas(w, h, pad);
     }
@@ -195,13 +235,13 @@ vg.headless.View = (function() {
     this._renderer.resize(w, h, pad);
   };
   
-  prototype.initSVG = function(w, h, pad) {
+  prototype.initSVG = function(w, h, pad, background, border, borderWidth) {
     var tw = w + pad.left + pad.right,
         th = h + pad.top + pad.bottom;
 
     // configure renderer
-    this._renderer.initialize(this._el, w, h, pad);
-  }
+    this._renderer.initialize(this._el, w, h, pad, background, border, borderWidth);
+  };
   
   prototype.render = function(items) {
     this._renderer.render(this._model.scene(), items);
@@ -232,6 +272,9 @@ vg.headless.View.Factory = function(defs) {
         vp = defs.viewport,
         r = opt.renderer || "canvas",
         v = new vg.headless.View(w, h, p, r, vp).defs(defs);
+    v.background(defs.background)
+      .border(defs.border)
+      .borderWidth(defs.borderWidth);
     if (defs.data.load) v.data(defs.data.load);
     if (opt.data) v.data(opt.data);
     return v;
