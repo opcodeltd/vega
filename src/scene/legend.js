@@ -128,6 +128,7 @@ vg.scene.legend = function() {
 
     return {
       type: "group",
+      name: "legend-group",
       interactive: false,
       properties: {
         enter: vg.parse.properties("group", legendStyle),

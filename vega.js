@@ -6543,6 +6543,7 @@ vg.scene.legend = function() {
 
     return {
       type: "group",
+      name: "legend-group",
       interactive: false,
       properties: {
         enter: vg.parse.properties("group", legendStyle),
@@ -6925,7 +6926,8 @@ function vg_hLegendLabels() {
       }
     }
   };
-}vg.Model = (function() {
+}
+vg.Model = (function() {
   function model() {
     this._defs = null;
     this._data = {};
