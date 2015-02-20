@@ -124,7 +124,16 @@ vg.svg.marks = (function() {
         y = o.y - (o.baseline === "middle"
           ? h/2 : (o.baseline === "bottom" ? h : 0)),
         url = vg.config.baseURL + o.url;
-    
+
+    if (o.position === "absolute") {
+      x += o.mark.group.bounds.x1 - vg.config.autopadInset;
+      y += o.mark.group.bounds.y1 - vg.config.autopadInset;
+    }
+    if (o.position === "absolute-x") {
+      x += o.mark.group.bounds.x1 - vg.config.autopadInset;
+    }
+
+
     this.setAttributeNS("http://www.w3.org/1999/xlink", "href", url);
     this.setAttribute("x", x);
     this.setAttribute("y", y);
@@ -151,15 +160,18 @@ vg.svg.marks = (function() {
         base = o.baseline==="top" ? ".9em"
              : o.baseline==="middle" ? ".35em" : 0;
 
+    if (o.position === "absolute") {
+      x += o.mark.group.bounds.x1 - vg.config.autopadInset;
+      y += o.mark.group.bounds.y1 - vg.config.autopadInset;
+    }
+    if (o.position === "absolute-x") {
+      x += o.mark.group.bounds.x1 - vg.config.autopadInset;
+    }
 
     if (r) {
       var t = (o.theta || 0) - Math.PI/2;
       x += r * Math.cos(t);
       y += r * Math.sin(t);
-    }
-
-    if (x === 'group-left') {
-      o.x = o.mark.group.bounds.x1;
     }
 
     this.setAttribute("x", x + dx);

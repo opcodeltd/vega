@@ -849,6 +849,24 @@
           ]
         }
       ]
+    },
+    {
+      "type": "image",
+      "properties": {
+        "enter": {
+          "url": {"value": "http://twist.redspider.co.nz/grace/wikibadge.jpg"},
+          "x": {
+            "value": 0,
+            "offset": 0
+          },
+          "y": {
+            "value": 0,
+            "offset": -10
+          },
+          "width": {"value": 120},
+          "height": {"value": 30}
+        }
+      }
     }
   ],
   "legends": [

@@ -682,10 +682,12 @@ var spec = {
             "marks": [
                 {
                     "type": "text",
+                    "name": "cat",
                     "properties": {
                         "enter": {
+                            "position": {"value": "absolute-x"},
                             "text": {"value": "New Zealand petrol prices"},
-                            "x": {"value": "group-left"},
+                            "x": {"value": 20},
                             "y": {"value": -70},
                             "fontSize": {"value": 18},
                             "fontWeight": {"value": 700},
@@ -743,6 +745,24 @@ var spec = {
                     ]
                 }
             ]
+        },
+        {
+            "type": "image",
+            "name": "badge",
+            "properties": {
+                "enter": {
+                    "url": {"value": "http://twist.redspider.co.nz/grace/wikibadge.jpg"},
+                    "position": {"value": "absolute"},
+                    "x": {
+                        "value": 580
+                    },
+                    "y": {
+                        "value": 0
+                    },
+                    "width": {"value": 120},
+                    "height": {"value": 34}
+                }
+            }
         }
     ],
     "legends": [
