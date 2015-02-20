@@ -268,6 +268,14 @@ vg.canvas.marks = (function() {
       y = (o.y||0) - (o.baseline === "middle"
         ? h/2 : (o.baseline === "bottom" ? h : 0));
 
+      if (o.position === "absolute") {
+        x += o.mark.group.bounds.x1 - vg.config.autopadInset;
+        y += o.mark.group.bounds.y1 - vg.config.autopadInset;
+      }
+      if (o.position === "absolute-x") {
+        x += o.mark.group.bounds.x1 - vg.config.autopadInset;
+      }
+
       if (o.image.loaded) {
         g.globalAlpha = (opac = o.opacity) != null ? opac : 1;
         g.drawImage(o.image, x, y, w, h);
@@ -298,6 +306,14 @@ vg.canvas.marks = (function() {
         t = (o.theta || 0) - Math.PI/2;
         x += r * Math.cos(t);
         y += r * Math.sin(t);
+      }
+
+      if (o.position === "absolute") {
+        x += o.mark.group.bounds.x1 - vg.config.autopadInset;
+        y += o.mark.group.bounds.y1 - vg.config.autopadInset;
+      }
+      if (o.position === "absolute-x") {
+        x += o.mark.group.bounds.x1 - vg.config.autopadInset;
       }
 
       if (o.angle) {
