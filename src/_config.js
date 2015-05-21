@@ -83,7 +83,8 @@ vg.config.legend = {
   titleColor: "#000",
   titleFont: "sans-serif",
   titleFontSize: 11,
-  titleFontWeight: "bold"
+  titleFontWeight: "bold",
+  reverse: false
 };
 
 // default color values

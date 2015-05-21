@@ -20,6 +20,9 @@ vg.parse.legends = (function() {
     // legend offset
     if (def.offset != null) legend.offset(def.offset);
 
+    // legend reverse
+    if (def.reverse != null) legend.reverse(def.reverse);
+
     // legend title
     legend.title(def.title || null);
 

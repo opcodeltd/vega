@@ -6,6 +6,7 @@ vg.scene.legend = function() {
       spacing = null,
       values = null,
       format = null,
+      reverse = null,
       formatString = null,
       title = undefined,
       orient = "right",
@@ -39,6 +40,7 @@ vg.scene.legend = function() {
     legendDef.orient = orient;
     legendDef.offset = offset;
     legendDef.padding = padding;
+    legendDef.reverse = reverse;
     return legendDef;
   };
 
@@ -88,7 +90,8 @@ vg.scene.legend = function() {
       type: "ordinal",
       points: true,
       domain: domain,
-      range: range
+      range: range,
+      reverse: reverse
     };
     
     // update legend def
@@ -282,6 +285,12 @@ vg.scene.legend = function() {
   legend.orient = function(x) {
     if (!arguments.length) return orient;
     orient = x in vg_legendOrients ? x + "" : vg.config.legend.orient;
+    return legend;
+  };
+
+  legend.reverse = function(x) {
+    if (!arguments.length) return reverse;
+    reverse = x;
     return legend;
   };
 
