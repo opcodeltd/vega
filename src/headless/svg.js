@@ -46,6 +46,7 @@ vg.headless.svg = (function() {
     t.head = open('svg', {
       width: w,
       height: h,
+      viewBox: "0 0 " + w + ' ' + h
     }, vg.config.svgNamespace);
 
     if (background || border) {
