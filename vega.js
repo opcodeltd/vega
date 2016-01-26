@@ -7732,7 +7732,7 @@ vg.headless.canvas = vg.canvas.Renderer;vg.headless.svg = (function() {
   
   prototype.initialize = function(el, w, h, pad, background, border, borderWidth) {
     var t = this._text;
-    
+
     var bg = {
       width: '100%',
       height: '100%'
@@ -7741,6 +7741,7 @@ vg.headless.canvas = vg.canvas.Renderer;vg.headless.svg = (function() {
     t.head = open('svg', {
       width: w,
       height: h,
+      viewBox: "0 0 " + w + ' ' + h
     }, vg.config.svgNamespace);
 
     if (background || border) {
