@@ -65,6 +65,7 @@ vega.js: \
 	src/parse/properties.js \
 	src/parse/scales.js \
 	src/parse/spec.js \
+	src/parse/template.js \
 	src/parse/transform.js \
 	src/scene/_package.js \
 	src/scene/Item.js \
@@ -79,6 +80,7 @@ vega.js: \
 	src/core/View.js \
 	src/core/Spec.js \
 	src/headless/_package.js \
+	src/headless/svg.js \
 	src/headless/View.js \
 	src/headless/render.js \
 	src/core/_end.js

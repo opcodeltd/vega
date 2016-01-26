@@ -10,7 +10,7 @@ vg.headless.View = (function() {
     this._height = this.__height = height || 500;
     this._padding = pad || {top:0, left:0, bottom:0, right:0};
     this._autopad = vg.isString(this._padding) ? 1 : 0;
-    this._renderer = new vg[type].Renderer();
+    this._renderer = new vg.headless[type]();
     this._viewport = vp || null;
     this._strict = vg.isString(pad) && pad === 'strict';
     this.initialize();
@@ -25,6 +25,10 @@ vg.headless.View = (function() {
       this.initialize();
     }
     return this;
+  };
+
+  prototype.model = function() {
+    return this._model;
   };
 
   prototype.width = function(width) {
@@ -180,27 +184,9 @@ vg.headless.View = (function() {
   };
   
   prototype.svg = function() {
-    if (this._type !== "svg") return null;
-
-    var p = this._padding,
-        w = this._width  + (p ? p.left + p.right : 0),
-        h = this._height + (p ? p.top + p.bottom : 0);
-
-    if (this._viewport) {
-      w = this._viewport[0] - (p ? p.left + p.right : 0);
-      h = this._viewport[1] - (p ? p.top + p.bottom : 0);
-    }
-
-      // build svg text
-    var svg = d3.select(this._el)
-      .select("svg").node().innerHTML
-      .replace(/ href=/g, " xlink:href="); // ns hack. sigh.
-
-    return '<svg '
-      + 'width="' + w + '" '
-      + 'height="' + h + '" '
-      + 'viewBox="0 0 ' + w + ' ' + h + '" '
-      + vg.config.svgNamespace + '>' + svg + '</svg>'
+    return (this._type === "svg")
+      ? this._renderer.svg()
+      : null;
   };
 
   prototype.initialize = function() {    
@@ -224,8 +210,8 @@ vg.headless.View = (function() {
   
   prototype.initCanvas = function(w, h, pad) {
     var Canvas = require("canvas"),
-        tw = w + pad.left + pad.right,
-        th = h + pad.top + pad.bottom,
+        tw = w + (pad ? pad.left + pad.right : 0),
+        th = h + (pad ? pad.top + pad.bottom : 0),
         canvas = this._canvas = new Canvas(tw, th),
         ctx = canvas.getContext("2d");
     
@@ -237,13 +223,13 @@ vg.headless.View = (function() {
     this._renderer.resize(w, h, pad);
   };
   
-  prototype.initSVG = function(w, h, pad, background, border, borderWidth) {
-    var tw = w + pad.left + pad.right,
-        th = h + pad.top + pad.bottom;
+  prototype.initSVG = function(w, h, pad) {
+    var tw = w + (pad ? pad.left + pad.right : 0),
+        th = h + (pad ? pad.top + pad.bottom : 0);
 
     // configure renderer
-    this._renderer.initialize(this._el, w, h, pad, background, border, borderWidth);
-  };
+    this._renderer.initialize(this._el, tw, th, pad);
+  }
   
   prototype.render = function(items) {
     this._renderer.render(this._model.scene(), items);
