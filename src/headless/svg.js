@@ -274,7 +274,15 @@ vg.headless.svg = (function() {
         y = o.y - (o.baseline === "middle"
           ? h/2 : (o.baseline === "bottom" ? h : 0)),
         url = vg.config.baseURL + o.url;
-    
+
+    if (o.position === "absolute") {
+      x += o.mark.group.bounds.x1 - vg.config.autopadInset;
+      y += o.mark.group.bounds.y1 - vg.config.autopadInset;
+    }
+    if (o.position === "absolute-x") {
+      x += o.mark.group.bounds.x1 - vg.config.autopadInset;
+    }
+
     return {
       "xlink:href": url,
       x: x,
