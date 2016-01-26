@@ -38,29 +38,32 @@ vg.headless.svg = (function() {
   prototype.initialize = function(el, w, h, pad, background, border, borderWidth) {
     var t = this._text;
 
-    t.head = open('svg', {
-      width: w,
-      height: h,
-    }, vg.config.svgNamespace);
-
     var bg = {
       width: '100%',
       height: '100%'
     };
 
-    if (background) {
-      bg.fill = background;
-    }
+    t.head = open('svg', {
+      width: w,
+      height: h,
+    }, vg.config.svgNamespace);
 
-    if (border) {
-      bg.stroke = border;
-    }
+    if (background || border) {
 
-    if (borderWidth) {
-      bg['stroke-width'] = borderWidth;
-    }
+      if (background) {
+        bg.fill = background;
+      }
 
-    t.bg = open('rect', bg) + close('rect');
+      if (border) {
+        bg.stroke = border;
+      }
+
+      if (borderWidth) {
+        bg['stroke-width'] = borderWidth;
+      }
+
+      t.bg = open('rect', bg) + close('rect');
+    }
 
     t.root = open('g', {
       transform: 'translate(' + pad.left + ',' + pad.top + ')'
@@ -71,7 +74,7 @@ vg.headless.svg = (function() {
   
   prototype.svg = function() {
     var t = this._text;
-    return t.head + t.defs + t.root + t.bg + t.body + t.foot;
+    return t.head + t.defs + t.bg + t.root +  t.body + t.foot;
   };
   
   prototype.buildDefs = function() {
