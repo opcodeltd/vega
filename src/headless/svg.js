@@ -74,7 +74,7 @@ vg.headless.svg = (function() {
   
   prototype.svg = function() {
     var t = this._text;
-    return t.head + t.defs + t.root + t.body + t.foot;
+    return t.head + t.defs + t.bg + t.root + t.body + t.foot;
   };
   
   prototype.buildDefs = function() {
