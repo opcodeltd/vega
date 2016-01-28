@@ -6,8 +6,7 @@ vg.headless.svg = (function() {
       root: "",
       foot: "",
       defs: "",
-      body: "",
-      bg: ""
+      body: ""
     };
     this._defs = {
       gradient: {},
@@ -35,36 +34,14 @@ vg.headless.svg = (function() {
 
   var prototype = renderer.prototype;
   
-  prototype.initialize = function(el, w, h, pad, background, border, borderWidth) {
+  prototype.initialize = function(el, w, h, pad) {
     var t = this._text;
-
-    var bg = {
-      width: '100%',
-      height: '100%'
-    };
 
     t.head = open('svg', {
       width: w,
       height: h,
       viewBox: "0 0 " + w + ' ' + h
     }, vg.config.svgNamespace);
-
-    if (background || border) {
-
-      if (background) {
-        bg.fill = background;
-      }
-
-      if (border) {
-        bg.stroke = border;
-      }
-
-      if (borderWidth) {
-        bg['stroke-width'] = borderWidth;
-      }
-
-      t.bg = open('rect', bg) + close('rect');
-    }
 
     t.root = open('g', {
       transform: 'translate(' + pad.left + ',' + pad.top + ')'
@@ -75,7 +52,7 @@ vg.headless.svg = (function() {
   
   prototype.svg = function() {
     var t = this._text;
-    return t.head + t.defs + t.bg + t.root +  t.body + t.foot;
+    return t.head + t.defs + t.root + t.body + t.foot;
   };
   
   prototype.buildDefs = function() {
@@ -145,13 +122,20 @@ vg.headless.svg = (function() {
     for (i=0; i<data.length; ++i) {
       sty = tag === 'g' ? null : style(data[i], tag, defs);
       svg += open(tag, attr(data[i], defs), sty);
-      if (tag === 'text') svg += data[i].text;
+      if (tag === 'text') svg += escape_text(data[i].text);
       if (tag === 'g') svg += this.drawGroup(data[i]);
       svg += close(tag);
     }
 
     return svg + close('g');
   };
+
+  function escape_text(s) {
+    s = (s == null ? "" : String(s));
+    return s.replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+  }
 
   var MARKS = {
     group:  ['g', group],
