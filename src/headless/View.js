@@ -223,12 +223,12 @@ vg.headless.View = (function() {
     this._renderer.resize(w, h, pad);
   };
   
-  prototype.initSVG = function(w, h, pad) {
+  prototype.initSVG = function(w, h, pad, background, border, borderWidth) {
     var tw = w + (pad ? pad.left + pad.right : 0),
         th = h + (pad ? pad.top + pad.bottom : 0);
 
     // configure renderer
-    this._renderer.initialize(this._el, tw, th, pad);
+    this._renderer.initialize(this._el, tw, th, pad, background, border, borderWidth);
   }
   
   prototype.render = function(items) {
