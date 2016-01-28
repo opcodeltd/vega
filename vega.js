@@ -7701,7 +7701,8 @@ vg.headless.canvas = vg.canvas.Renderer;vg.headless.svg = (function() {
       root: "",
       foot: "",
       defs: "",
-      body: ""
+      body: "",
+      bg: ""
     };
     this._defs = {
       gradient: {},
@@ -7729,14 +7730,36 @@ vg.headless.canvas = vg.canvas.Renderer;vg.headless.svg = (function() {
 
   var prototype = renderer.prototype;
   
-  prototype.initialize = function(el, w, h, pad) {
+  prototype.initialize = function(el, w, h, pad, background, border, borderWidth) {
     var t = this._text;
+
+    var bg = {
+      width: '100%',
+      height: '100%'
+    };
 
     t.head = open('svg', {
       width: w,
       height: h,
       viewBox: "0 0 " + w + ' ' + h
     }, vg.config.svgNamespace);
+
+    if (background || border) {
+
+      if (background) {
+        bg.fill = background;
+      }
+
+      if (border) {
+        bg.stroke = border;
+      }
+
+      if (borderWidth) {
+        bg['stroke-width'] = borderWidth;
+      }
+
+      t.bg = open('rect', bg) + close('rect');
+    }
 
     t.root = open('g', {
       transform: 'translate(' + pad.left + ',' + pad.top + ')'
@@ -7747,7 +7770,7 @@ vg.headless.canvas = vg.canvas.Renderer;vg.headless.svg = (function() {
   
   prototype.svg = function() {
     var t = this._text;
-    return t.head + t.defs + t.root + t.body + t.foot;
+    return t.head + t.defs + t.bg + t.root + t.body + t.foot;
   };
   
   prototype.buildDefs = function() {

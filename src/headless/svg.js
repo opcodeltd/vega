@@ -6,7 +6,8 @@ vg.headless.svg = (function() {
       root: "",
       foot: "",
       defs: "",
-      body: ""
+      body: "",
+      bg: ""
     };
     this._defs = {
       gradient: {},
