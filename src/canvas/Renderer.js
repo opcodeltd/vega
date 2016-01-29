@@ -7,7 +7,7 @@ vg.canvas.Renderer = (function() {
 
   var prototype = renderer.prototype;
 
-  prototype.initialize = function(el, width, height, pad) {
+  prototype.initialize = function(el, width, height, pad, background, border, borderWidth) {
     this._el = el;
   
     if (!el) return this; // early exit if no DOM element
