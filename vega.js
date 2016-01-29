@@ -7854,6 +7854,10 @@ vg.headless.canvas = vg.canvas.Renderer;vg.headless.svg = (function() {
             .replace(/</g, '&lt;')
             .replace(/>/g, '&gt;');
   }
+  
+  function escape_font(s) {
+    return String(s).replace(/\"/g, "'");
+  }
 
   var MARKS = {
     group:  ['g', group],
@@ -8132,7 +8136,7 @@ vg.headless.canvas = vg.canvas.Renderer;vg.headless.svg = (function() {
       + (o.fontVariant ? o.fontVariant + " " : "")
       + (o.fontWeight ? o.fontWeight + " " : "")
       + (o.fontSize != null ? o.fontSize : vg.config.render.fontSize) + "px "
-      + (o.font || vg.config.render.font);
+      + (o.font && escape_font(o.font) || vg.config.render.font);
     return f;
   }
 
