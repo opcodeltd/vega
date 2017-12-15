@@ -4,7 +4,10 @@ vg.headless.render = function(opt, callback) {
       // create and render view
       var view = chart({
         data: opt.data,
-        renderer: opt.renderer
+        renderer: opt.renderer,
+        includeDataAttrs: opt.includeDataAttrs,
+        primary: opt.primary,
+        group: opt.group,
       }).update();
 
       if (opt.renderer === "svg") {

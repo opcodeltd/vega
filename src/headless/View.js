@@ -159,6 +159,12 @@ vg.headless.View = (function() {
     return this;
   };
 
+  prototype.setInteractivityData = function(includeDataAttrs, primary, group) {
+    this._includeDataAttrs = includeDataAttrs;
+    this._primary = primary;
+    this._group = group;
+  };
+
   prototype.renderer = function() {
     return this._renderer;
   };
@@ -228,11 +234,11 @@ vg.headless.View = (function() {
         th = h + (pad ? pad.top + pad.bottom : 0);
 
     // configure renderer
-    this._renderer.initialize(this._el, tw, th, pad, background, border, borderWidth);
+    this._renderer.initialize(this._el, tw, th, pad, background, border, borderWidth, this._includeDataAttrs, this._primary, this._group);
   }
   
   prototype.render = function(items) {
-    this._renderer.render(this._model.scene(), items);
+    this._renderer.render(this._model.scene(), items, this._model._data);
     return this;
   };
   
@@ -268,6 +274,11 @@ vg.headless.View.Factory = function(defs) {
       .height(defs.height);
     if (defs.data.load) v.data(defs.data.load);
     if (opt.data) v.data(opt.data);
+    v.setInteractivityData(
+      opt.includeDataAttrs,
+      opt.primary,
+      opt.group
+    );
     return v;
   };
 };

@@ -7731,8 +7731,8 @@ vg.headless.canvas = vg.canvas.Renderer;vg.headless.svg = (function() {
   }
 
   var prototype = renderer.prototype;
-  
-  prototype.initialize = function(el, w, h, pad, background, border, borderWidth) {
+
+  prototype.initialize = function(el, w, h, pad, background, border, borderWidth, includeDataAttrs, primary, group) {
     var t = this._text;
 
     var bg = {
@@ -7768,6 +7768,10 @@ vg.headless.canvas = vg.canvas.Renderer;vg.headless.svg = (function() {
     });
 
     t.foot = close('g') + close('svg');
+
+    this._includeDataAttrs = includeDataAttrs;
+    this._primary = primary;
+    this._group = group;
   };
   
   prototype.svg = function() {
@@ -7822,13 +7826,17 @@ vg.headless.canvas = vg.canvas.Renderer;vg.headless.svg = (function() {
     
     return defs;
   };
-  
-  prototype.render = function(scene) {
-    this._text.body = this.draw(scene);
+
+  prototype.stringify = function(input) {
+    return JSON.stringify(input).replace(/"/g, '&quot;');
+  };
+
+  prototype.render = function(scene, items, series) {
+    this._text.body = this.draw(scene, series);
     this._text.defs = this.buildDefs();
   };
 
-  prototype.draw = function(scene) {
+  prototype.draw = function(scene, series) {
     var meta = MARKS[scene.marktype],
         tag  = meta[0],
         attr = meta[1],
@@ -7837,7 +7845,78 @@ vg.headless.canvas = vg.canvas.Renderer;vg.headless.svg = (function() {
         defs = this._defs,
         svg = "", i, sty;
 
-    svg += open('g', {'class': cssClass(scene.def)});
+    var attrs = {
+      'class': cssClass(scene.def)
+    };
+
+    if (this._includeDataAttrs) {
+      if (series) {
+        // Grab the datapoint and its index. The index will be used in the chart interactivity code to map this
+        // datapoint to the x/y data
+        attrs['data-series'] = this.stringify(series.series1.map(function(e) {
+          const data = e.data;
+          data['index'] = e.index;
+          return data;
+        }));
+
+        // Grab information required for stacked bars/columns
+        if (typeof(series.stats) !== 'undefined') {
+          const indexMap = {};
+          series.stats.forEach(function(e) {
+            indexMap[e.key] = e.values.map(function(v) {
+              return v.index;
+            });
+          });
+          attrs['data-indexmap'] = this.stringify(indexMap);
+        }
+
+        if (this._primary) {
+          attrs['data-primary'] = this.stringify(this._primary);
+        }
+        if (this._group) {
+          attrs['data-group'] = this.stringify(this._group);
+        }
+      }
+
+      const attrData = [];
+
+      if (attrs['class'] === 'type-rect') {
+        for (i = 0; i < scene.items.length; ++i) {
+          attrData.push({
+            bounds: scene.items[i].bounds,
+            index: scene.items[i].datum.index,
+            groupX: scene.items[i].mark.group.x,
+            groupY: scene.items[i].mark.group.y,
+            color: scene.items[i].fill,
+          });
+        }
+        attrs['data-bounds'] = this.stringify(attrData);
+      }
+      else if (attrs['class'] === 'type-line') {
+        for (i = 0; i < scene.items.length; ++i) {
+          attrData.push({
+            x: scene.items[i].x,
+            y: scene.items[i].y,
+            index: scene.items[i].datum.index,
+            color: scene.items[i].stroke,
+          });
+        }
+        attrs['data-coords'] = this.stringify(attrData);
+      }
+      else if (attrs['class'] === 'type-area') {
+        for (i = 0; i < scene.items.length; ++i) {
+          attrData.push({
+            x: scene.items[i].x,
+            y: scene.items[i].y,
+            index: scene.items[i].datum.index,
+            color: scene.items[i].fill,
+          });
+        }
+        attrs['data-coords'] = this.stringify(attrData);
+      }
+    }
+
+    svg += open('g', attrs);
 
     for (i=0; i<data.length; ++i) {
       sty = tag === 'g' ? null : style(data[i], tag, defs);
@@ -8306,6 +8385,12 @@ vg.headless.View = (function() {
     return this;
   };
 
+  prototype.setInteractivityData = function(includeDataAttrs, primary, group) {
+    this._includeDataAttrs = includeDataAttrs;
+    this._primary = primary;
+    this._group = group;
+  };
+
   prototype.renderer = function() {
     return this._renderer;
   };
@@ -8375,11 +8460,11 @@ vg.headless.View = (function() {
         th = h + (pad ? pad.top + pad.bottom : 0);
 
     // configure renderer
-    this._renderer.initialize(this._el, tw, th, pad, background, border, borderWidth);
+    this._renderer.initialize(this._el, tw, th, pad, background, border, borderWidth, this._includeDataAttrs, this._primary, this._group);
   }
   
   prototype.render = function(items) {
-    this._renderer.render(this._model.scene(), items);
+    this._renderer.render(this._model.scene(), items, this._model._data);
     return this;
   };
   
@@ -8415,6 +8500,11 @@ vg.headless.View.Factory = function(defs) {
       .height(defs.height);
     if (defs.data.load) v.data(defs.data.load);
     if (opt.data) v.data(opt.data);
+    v.setInteractivityData(
+      opt.includeDataAttrs,
+      opt.primary,
+      opt.group
+    );
     return v;
   };
 };
@@ -8424,7 +8514,10 @@ vg.headless.render = function(opt, callback) {
       // create and render view
       var view = chart({
         data: opt.data,
-        renderer: opt.renderer
+        renderer: opt.renderer,
+        includeDataAttrs: opt.includeDataAttrs,
+        primary: opt.primary,
+        group: opt.group,
       }).update();
 
       if (opt.renderer === "svg") {
